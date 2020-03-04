@@ -1,9 +1,9 @@
 import paramiko
-import json
+    import json
 import os
 
 class Server(object):
-
+    
     def __init__(self, command, hostname, username, password):
         self.command = command
         self.hostname = hostname
@@ -37,25 +37,25 @@ def main():
 
     if os.path.exists('config.json'):
         f = open('config.json', 'rb')
-        t = json.load(f)
+        t = json.load(f) # read the command information from the disk
         test = Server(t[3], t[0], t[1], t[2])
         f.close()
     
     else:
 
-
+        # input the information 
         hostname = input('Please input your hostname:\n')
         username = input('Please input your username:\n')
         password = input('Please input your password:\n')
         command = input('Please input your command；\n')
 
         test = Server(command, hostname, username, password)
-        d = [hostname, username, password, command]
+        d = [hostname, username, password, command] 
         f = open('config.json', 'w')
-        json.dump(d, f)
+        json.dump(d, f)# write the command information to the disk
         f.close()
 
-    test.executeCommand()
+    test.executeCommand()#
 
 
 
